@@ -9,6 +9,8 @@
   margin: 0;
 }
 
+body {
+}
 /* Дата */
 .date {
   border: 2px solid var(--color1);
@@ -31,6 +33,5 @@
   padding: 20px;
 }
 .level {
-  padding: 0;
   border: 2px solid var(--color2);
 }

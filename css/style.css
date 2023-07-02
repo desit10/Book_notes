@@ -1,0 +1,36 @@
+:root {
+  --color1: #05b1b1;
+  --color2: #52339a;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Дата */
+.date {
+  border: 2px solid var(--color1);
+  padding: 10px;
+}
+.input-date {
+  width: 60%;
+  padding: 10px;
+}
+
+/* Заметки */
+.notes {
+  border: 2px solid var(--color1);
+  padding: 10px;
+}
+
+/* Уровни работы */
+.case {
+  border: 2px solid var(--color1);
+  padding: 20px;
+}
+.level {
+  padding: 0;
+  border: 2px solid var(--color2);
+}

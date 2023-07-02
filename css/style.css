@@ -1,37 +1,50 @@
 :root {
-  --color1: #05b1b1;
-  --color2: #52339a;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  --color1: #f5fafa;
+  --color2: #000000;
 }
 
 body {
+  background-color: #fcf63f;
 }
+
+/* Общее оформление блоков */
+.date,
+.notes,
+.note,
+.case,
+.case__column {
+  background-color: var(--color1);
+  border-radius: 30px;
+}
+
 /* Дата */
 .date {
-  border: 2px solid var(--color1);
   padding: 10px;
 }
 .input-date {
   width: 60%;
+  border-radius: 30px;
   padding: 10px;
 }
 
 /* Заметки */
 .notes {
-  border: 2px solid var(--color1);
-  padding: 10px;
+  padding: 20px;
+}
+.note {
+  padding: 15px;
+  text-align: justify;
+  border: 2px solid black;
 }
 
 /* Уровни работы */
 .case {
-  border: 2px solid var(--color1);
   padding: 20px;
 }
-.level {
+.case__column {
+  border: 2px solid var(--color2);
+  padding: 10px;
+}
+.case__level {
   border: 2px solid var(--color2);
 }

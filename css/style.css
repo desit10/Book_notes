@@ -90,6 +90,9 @@ body {
 }
 .btn-plus,
 .btn-minus {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
   border: none;
   border-radius: 50%;
   width: 30px;

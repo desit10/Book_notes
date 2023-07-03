@@ -8,24 +8,27 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
     />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <title>Book notes</title>
   </head>
   <body>
     <div class="container text-center">
       <div class="row mt-4">
+        <!-- Первый блок -->
         <div class="col-md-6 col-sm-12">
           <div class="col-sm-12">
             <!-- Дата -->
             <div class="mb-3">
               <div class="date">
-                <p class="h5">Выберите дату для добавления записи</p>
-                <input
-                  type="text"
-                  placeholder="Дата"
-                  class="input-date"
-                  readonly="readonly"
-                />
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addNoteModal"
+                >
+                  Добавить новую запись
+                </button>
               </div>
             </div>
             <!--  -->
@@ -34,35 +37,68 @@
             <div class="mb-3">
               <div class="notes">
                 <p class="h5">Заметки</p>
-                <div class="col note">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic
-                  eaque illum in, voluptatem laboriosam laborum ipsam
-                  perferendis corporis illo aliquam nihil tempora? In beatae
-                  voluptatibus, aut accusantium exercitationem saepe
-                  perspiciatis.
-                </div>
               </div>
             </div>
             <!--  -->
           </div>
         </div>
+        <!--  -->
 
         <!-- Уровни работы -->
         <div class="col-md-6 col-sm-12">
           <div class="case">
-            <p class="h5">Классификация дел</p>
-            <div class="row">
-              <div class="col-xl-3 col-lg-6 col-sm-12 case__column">
-                <div class="col case__level">Не особо важные дела</div>
+            <div class="row aaa">
+              <div class="col-xxl-3 col-xl-6 col-sm-12 mb-3 mt-3 case__column">
+                <div class="col case__title">
+                  Обычные дела
+                  <button
+                    type="button"
+                    class="btn btn-primary plus"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addCaseModal"
+                  >
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
               </div>
-              <div class="col-xl-3 col-lg-6 col-sm-12 case__column">
-                <div class="col case__level">Важные дела</div>
+              <div class="col-xxl-3 col-xl-6 col-sm-12 mb-3 mt-3 case__column">
+                <div class="col case__title">
+                  Важные дела
+                  <button
+                    type="button"
+                    class="btn btn-primary plus"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addCaseModal"
+                  >
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
               </div>
-              <div class="col-xl-3 col-lg-6 col-sm-12 case__column">
-                <div class="col case__level">Особо важные дела</div>
+              <div class="col-xxl-3 col-xl-6 col-sm-12 mb-3 mt-3 case__column">
+                <div class="col case__title">
+                  Срочные дела
+                  <button
+                    type="button"
+                    class="btn btn-primary plus"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addCaseModal"
+                  >
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
               </div>
-              <div class="col-xl-3 col-lg-6 col-sm-12 case__column">
-                <div class="col case__level">Другие дела</div>
+              <div class="col-xxl-3 col-xl-6 col-sm-12 mb-3 mt-3 case__column">
+                <div class="col case__title">
+                  Другие дела
+                  <button
+                    type="button"
+                    class="btn btn-primary plus"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addCaseModal"
+                  >
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -70,8 +106,119 @@
         <!--  -->
       </div>
     </div>
+
+    <div
+      class="modal fade"
+      id="addNoteModal"
+      tabindex="-1"
+      aria-labelledby="addNoteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="addNoteModalLabel">
+              Новая запись
+            </h1>
+            <button
+              type="button"
+              class="note-close btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Выберите дату для добавления записи:</label
+                >
+                <input
+                  type="text"
+                  placeholder="Дата"
+                  class="form-control input-date"
+                  readonly="readonly"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Название записи:</label
+                >
+                <input type="text" class="form-control" id="note-title" />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Текст:</label>
+                <textarea
+                  class="form-control"
+                  id="note-text"
+                  rows="15"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Закрыть
+            </button>
+            <button type="button" class="btn btn-primary addNote">
+              Сохранить
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="addCaseModal"
+      tabindex="-1"
+      aria-labelledby="addCaseModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="addCaseModalLabel">Новое дело</h1>
+            <button
+              type="button"
+              class="case-close btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >Описание дела:</label
+                >
+                <textarea class="form-control" id="case-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Закрыть
+            </button>
+            <button type="button" class="btn btn-primary addCase">
+              Сохранить
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

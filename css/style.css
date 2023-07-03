@@ -11,8 +11,7 @@ body {
 .date,
 .notes,
 .note,
-.case,
-.case__column {
+.case {
   background-color: var(--color1);
   border-radius: 30px;
 }
@@ -22,9 +21,9 @@ body {
   padding: 10px;
 }
 .input-date {
-  width: 60%;
-  border-radius: 30px;
-  padding: 10px;
+  text-align: center;
+  width: 100%;
+  background-color: var(--color1);
 }
 
 /* Заметки */
@@ -32,9 +31,34 @@ body {
   padding: 20px;
 }
 .note {
+  margin-bottom: 15px;
   padding: 15px;
   text-align: justify;
   border: 2px solid black;
+}
+.note:last-child {
+  margin-bottom: 0;
+}
+.note__header {
+  display: grid;
+  grid-template-columns: 25% 50% 45%;
+  text-align: center;
+}
+.note__data {
+  color: grey;
+}
+.note-del {
+  margin: 0 auto;
+  border: none;
+  width: 30px;
+  background-color: var(--color1);
+  z-index: 0;
+  position: relative;
+}
+.fa-trash {
+  font-size: 25px;
+  z-index: -1;
+  position: relative;
 }
 
 /* Уровни работы */
@@ -42,9 +66,25 @@ body {
   padding: 20px;
 }
 .case__column {
-  border: 2px solid var(--color2);
+  border: 1px solid var(--color2);
+  border-radius: 30px;
   padding: 10px;
 }
-.case__level {
-  border: 2px solid var(--color2);
+.case__title {
+  display: grid;
+
+  margin-bottom: 15px;
+}
+.fa-plus {
+  font-size: 20px;
+}
+.case__item {
+  display: grid;
+  background-color: gainsboro;
+  border-radius: 30px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.fa-minus {
+  font-size: 20px;
 }

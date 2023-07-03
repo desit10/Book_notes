@@ -47,13 +47,13 @@
         <!-- Уровни работы -->
         <div class="col-md-6 col-sm-12">
           <div class="case">
-            <div class="row aaa">
+            <div class="row case-row">
               <div class="col-xxl-3 col-xl-6 col-sm-12 mb-3 mt-3 case__column">
                 <div class="col case__title">
                   Обычные дела
                   <button
                     type="button"
-                    class="btn btn-primary plus"
+                    class="btn-plus btn-primary"
                     data-bs-toggle="modal"
                     data-bs-target="#addCaseModal"
                   >
@@ -66,7 +66,7 @@
                   Важные дела
                   <button
                     type="button"
-                    class="btn btn-primary plus"
+                    class="btn-plus btn-primary"
                     data-bs-toggle="modal"
                     data-bs-target="#addCaseModal"
                   >
@@ -79,7 +79,7 @@
                   Срочные дела
                   <button
                     type="button"
-                    class="btn btn-primary plus"
+                    class="btn-plus btn-primary"
                     data-bs-toggle="modal"
                     data-bs-target="#addCaseModal"
                   >
@@ -92,7 +92,7 @@
                   Другие дела
                   <button
                     type="button"
-                    class="btn btn-primary plus"
+                    class="btn-plus btn-primary"
                     data-bs-toggle="modal"
                     data-bs-target="#addCaseModal"
                   >
@@ -130,6 +130,7 @@
           <div class="modal-body">
             <form>
               <div class="mb-3">
+                <p class="error h5"></p>
                 <label for="recipient-name" class="col-form-label"
                   >Выберите дату для добавления записи:</label
                 >
@@ -151,7 +152,7 @@
                 <textarea
                   class="form-control"
                   id="note-text"
-                  rows="15"
+                  rows="5"
                 ></textarea>
               </div>
             </form>
@@ -193,6 +194,8 @@
           <div class="modal-body">
             <form>
               <div class="mb-3">
+                <p class="error h5"></p>
+
                 <label for="message-text" class="col-form-label"
                   >Описание дела:</label
                 >

@@ -16,6 +16,12 @@ body {
   border-radius: 30px;
 }
 
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  border: none;
+  box-shadow: none;
+}
+
 /* Дата */
 .date {
   padding: 10px;
@@ -35,6 +41,7 @@ body {
   padding: 15px;
   text-align: justify;
   border: 2px solid black;
+  word-break: break-all;
 }
 .note:last-child {
   margin-bottom: 0;
@@ -75,16 +82,41 @@ body {
 
   margin-bottom: 15px;
 }
-.fa-plus {
+.fa-plus,
+.fa-minus {
   font-size: 20px;
+  z-index: -1;
+  position: relative;
+}
+.btn-plus,
+.btn-minus {
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  padding-top: 3px;
+  z-index: 1;
+  position: relative;
 }
 .case__item {
   display: grid;
+  text-align: center;
   background-color: gainsboro;
   border-radius: 30px;
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 10px;
+  word-break: break-all;
 }
-.fa-minus {
-  font-size: 20px;
+.case__item:last-child {
+  margin-bottom: 0;
+}
+
+/* Модальные окна */
+.error {
+  margin: 0;
+  font-weight: bold;
+  color: red;
+  transition: 1s;
+  opacity: 0;
 }

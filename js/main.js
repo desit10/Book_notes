@@ -95,7 +95,7 @@ document.querySelector(".notes").addEventListener("click", function (e) {
 });
 //#endregion
 
-//#region добавление новой памятки
+//#region Добавление новой памятки
 let caseColumn;
 document.querySelector(".btn-case").addEventListener("click", function () {
   caseColumn = document.querySelector(".case-row");
@@ -166,7 +166,7 @@ document.querySelector(".case-row").addEventListener("click", function (e) {
 });
 //#endregion
 
-//#region Выво данных
+//#region Вывод данных
 function update() {
   updateNote();
   updateMemo();

@@ -1,25 +1,44 @@
 "use strict";
 
-update();
+//#region Переменные
+// Данные заметок и памяток
+let data = {
+  note: {
+    title: [],
+    text: [],
+  },
+  memo: {
+    date: [],
+    text: [],
+  },
+};
 
-let errorMessage = document.querySelectorAll(".error");
+// Присвоение данных из локального хранилища
+if (localStorage.length > 0) {
+  data = JSON.parse(localStorage.getItem("data"));
+  console.log(data);
+  update();
+}
+
 // Выбор даты
 flatpickr(".input-date", {
   locale: "ru",
   dateFormat: "d.m.y",
 });
 
+// Поле ошибки
+let errorMessage = document.querySelectorAll(".error");
+//#endregion
+
 //#region Добавление новой записи
 let noteBlock = document.querySelector(".notes");
 
 document.querySelector(".addNote").addEventListener("click", function () {
-  let date = document.querySelector(".input-date");
-
   let noteTitle = document.querySelector("#note-title");
 
   let noteText = document.querySelector("#note-text");
 
-  if (date.value === "" || noteTitle.value === "" || noteText.value === "") {
+  if (noteTitle.value === "" || noteText.value === "") {
     errorMessage[0].textContent = "Заполните все поля!";
 
     errorMessage[0].style.opacity = 1;
@@ -33,7 +52,7 @@ document.querySelector(".addNote").addEventListener("click", function () {
     "beforeend",
     `<div class="col note">
       <div class="note__header">
-        <p class="note__data">${date.value}</p>
+        <p></p>
         <p class="h5 note__title">${noteTitle.value}</p>
         <button class="note-del"><i class="fa fa-trash"></i></button>
       </div>
@@ -41,9 +60,11 @@ document.querySelector(".addNote").addEventListener("click", function () {
     </div>`
   );
 
-  localStorage.setItem(noteTitle.value, [date.value, noteText.value]);
+  data.note.title.push(noteTitle.value);
+  data.note.text.push(noteText.value);
 
-  date.value = "";
+  localStorage.setItem("data", JSON.stringify(data));
+
   noteTitle.value = "";
   noteText.value = "";
 
@@ -61,22 +82,27 @@ document.querySelector(".notes").addEventListener("click", function (e) {
 
   note.remove();
 
-  localStorage.removeItem(head[1].innerText);
+  let notes = data.note.title;
+
+  let index = notes.indexOf(head[1].innerText);
+  if (index > -1) {
+    notes.splice(index, 1);
+    data.note.text.splice(index, 1);
+  }
+
+  localStorage.setItem("data", JSON.stringify(data));
 });
 //#endregion
 
-//#region добавление новых дел
+//#region добавление новой памятки
 let caseColumn;
-let caseTitle;
-document.querySelector(".case-row").addEventListener("click", function (e) {
-  if (e.target.className != "btn-plus btn-primary") return;
-
-  caseColumn = e.target.closest(".case__column");
-
-  caseTitle = e.target.closest(".case__column").children;
+document.querySelector(".btn-case").addEventListener("click", function () {
+  caseColumn = document.querySelector(".case-row");
 });
 
 document.querySelector(".addCase").addEventListener("click", function () {
+  let date = document.querySelector(".input-date");
+
   let caseText = document.querySelector("#case-text");
 
   if (caseText.value === "") {
@@ -92,74 +118,89 @@ document.querySelector(".addCase").addEventListener("click", function () {
 
   caseColumn.insertAdjacentHTML(
     "beforeend",
-    `<div class="col case__item">
-      ${caseText.value} <button
-      type="button"
-      class="btn-minus btn-primary"
-    >
-      <i class="fa fa-minus"></i>
-    </button>
-      </div>`
+    `<div class="col-xxl-3 col-xl-6 col-sm-12 mb-3 mt-3 case__column">
+    <div class="col case__item ">
+    <p class="memo__data">${date.value}</p>
+      ${caseText.value}
+      <button type="button" class="btn-minus btn-primary">
+        <i class="fa fa-minus"></i>
+      </button>
+    </div>
+  </div>`
   );
 
-  localStorage.setItem(caseText.value, caseTitle[0].innerText);
+  data.memo.date.push(date.value);
+  data.memo.text.push(caseText.value);
 
+  localStorage.setItem("data", JSON.stringify(data));
+
+  date.value = "Дата";
   caseText.value = "";
 
   document.querySelector(".case-close").click();
 });
 //#endregion
 
-//#region Удаление дел
+//#region Удаление памятки
 document.querySelector(".case-row").addEventListener("click", function (e) {
   if (e.target.className != "btn-minus btn-primary") return;
 
-  let caseItem = e.target.closest(".case__item");
-  let innerText = e.target.closest(".case__item").innerText;
+  let caseItem = e.target.closest(".case__column");
+  let innerText = e.target.closest(".case__item").children;
+
+  console.log(caseItem);
+  console.log(innerText);
 
   caseItem.remove();
 
-  localStorage.removeItem(innerText);
+  let memoDate = data.memo.date;
+
+  let index = memoDate.indexOf(innerText[0].innerText);
+  if (index > -1) {
+    memoDate.splice(index, 1);
+    data.memo.text.splice(index, 1);
+  }
+
+  localStorage.setItem("data", JSON.stringify(data));
 });
 //#endregion
 
-// Вывод данных
+//#region Выво данных
 function update() {
-  Object.keys(localStorage).forEach((key) => {
-    let values = localStorage.getItem(key).split(",");
+  updateNote();
+  updateMemo();
+}
 
-    if (values.length == 2) {
-      document.querySelector(".notes").insertAdjacentHTML(
-        "beforeend",
-        `<div class="col note">
+function updateNote() {
+  for (let i = 0; i < data.note.title.length; i++) {
+    document.querySelector(".notes").insertAdjacentHTML(
+      "beforeend",
+      `<div class="col note">
       <div class="note__header">
-        <p class="note__data">${values[0]}</p>
-        <p class="h5 note__title">${key}</p>
+        <p></p>
+        <p class="h5 note__title">${data.note.title[i]}</p>
         <button class="note-del"><i class="fa fa-trash"></i></button>
       </div>
-      ${values[1]}
+      ${data.note.text[i]}
     </div>`
-      );
-    } else {
-      let caseRow = document.querySelector(".case-row").children;
-
-      Array.from(caseRow).forEach((el) => {
-        let innerText = String(el.innerText).split("\n");
-
-        if (innerText[0] == localStorage.getItem(key)) {
-          el.insertAdjacentHTML(
-            "beforeend",
-            `<div class="col case__item">
-              ${key} <button
-              type="button"
-              class="btn-minus btn-primary"
-            >
-              <i class="fa fa-minus"></i>
-            </button>
-              </div>`
-          );
-        }
-      });
-    }
-  });
+    );
+  }
 }
+
+function updateMemo() {
+  for (let i = 0; i < data.memo.date.length; i++) {
+    document.querySelector(".case-row").insertAdjacentHTML(
+      "beforeend",
+      `<div class="col-xxl-3 col-xl-6 col-sm-12 mb-3 mt-3 case__column">
+  <div class="col case__item ">
+  <p class="memo__data">${data.memo.date[i]}</p>
+  ${data.memo.text[i]}
+    <button type="button" class="btn-minus btn-primary">
+      <i class="fa fa-minus"></i>
+    </button>
+  </div>
+</div>`
+    );
+  }
+}
+//#endregion

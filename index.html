@@ -47,60 +47,15 @@
         <!-- Уровни работы -->
         <div class="col-md-6 col-sm-12">
           <div class="case">
-            <div class="row case-row">
-              <div class="col-xxl-3 col-xl-6 col-sm-12 mb-3 mt-3 case__column">
-                <div class="col case__title">
-                  Обычные дела
-                  <button
-                    type="button"
-                    class="btn-plus btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addCaseModal"
-                  >
-                    <i class="fa fa-plus"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="col-xxl-3 col-xl-6 col-sm-12 mb-3 mt-3 case__column">
-                <div class="col case__title">
-                  Важные дела
-                  <button
-                    type="button"
-                    class="btn-plus btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addCaseModal"
-                  >
-                    <i class="fa fa-plus"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="col-xxl-3 col-xl-6 col-sm-12 mb-3 mt-3 case__column">
-                <div class="col case__title">
-                  Срочные дела
-                  <button
-                    type="button"
-                    class="btn-plus btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addCaseModal"
-                  >
-                    <i class="fa fa-plus"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="col-xxl-3 col-xl-6 col-sm-12 mb-3 mt-3 case__column">
-                <div class="col case__title">
-                  Другие дела
-                  <button
-                    type="button"
-                    class="btn-plus btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addCaseModal"
-                  >
-                    <i class="fa fa-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
+            <button
+              type="button"
+              class="btn btn-primary btn-case"
+              data-bs-toggle="modal"
+              data-bs-target="#addCaseModal"
+            >
+              Добавить новую памятку
+            </button>
+            <div class="row case-row"></div>
           </div>
         </div>
         <!--  -->
@@ -131,17 +86,6 @@
             <form>
               <div class="mb-3">
                 <p class="error h5"></p>
-                <label for="recipient-name" class="col-form-label"
-                  >Выберите дату для добавления записи:</label
-                >
-                <input
-                  type="text"
-                  placeholder="Дата"
-                  class="form-control input-date"
-                  readonly="readonly"
-                />
-              </div>
-              <div class="mb-3">
                 <label for="recipient-name" class="col-form-label"
                   >Название записи:</label
                 >
@@ -195,7 +139,17 @@
             <form>
               <div class="mb-3">
                 <p class="error h5"></p>
-
+                <label for="recipient-name" class="col-form-label"
+                  >Выберите дату памятки:</label
+                >
+                <input
+                  type="text"
+                  placeholder="Дата"
+                  class="form-control input-date"
+                  readonly="readonly"
+                />
+              </div>
+              <div class="mb-3">
                 <label for="message-text" class="col-form-label"
                   >Описание дела:</label
                 >

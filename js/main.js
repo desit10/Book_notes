@@ -23,7 +23,8 @@ if (localStorage.length > 0) {
 // Выбор даты
 flatpickr(".input-date", {
   locale: "ru",
-  dateFormat: "d.m.y",
+  enableTime: true,
+  dateFormat: "d.m.y H:i",
 });
 
 // Поле ошибки
@@ -105,8 +106,8 @@ document.querySelector(".addCase").addEventListener("click", function () {
 
   let caseText = document.querySelector("#case-text");
 
-  if (caseText.value === "") {
-    errorMessage[1].textContent = "Заполните поле!";
+  if (date.value === "" || caseText.value === "") {
+    errorMessage[1].textContent = "Заполните все поля!";
 
     errorMessage[1].style.opacity = 1;
 

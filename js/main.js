@@ -16,7 +16,6 @@ let data = {
 // Присвоение данных из локального хранилища
 if (localStorage.length > 0) {
   data = JSON.parse(localStorage.getItem("data"));
-  console.log(data);
   update();
 }
 
